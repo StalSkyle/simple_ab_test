@@ -118,8 +118,15 @@ for idx, user in df_users.iterrows():
                 dt_purchase = dt_pw + timedelta(seconds=random.randint(5, 120))
                 events_list.append({'user_id': u_id, 'event_name': 'subscription_purchase', 'event_timestamp': dt_purchase})
                 
-                plan = np.random.choice(['weekly', 'monthly', 'annual'], p=[0.5, 0.35, 0.15])
-                amounts = {'weekly': 4.99, 'monthly': 14.99, 'annual': 49.99}
+                if group == 'B':
+                    # в группе B даем скидку на годовой план ($34.99 вместо $49.99) - из-за скидки больше людей выбирают именно annual
+                    plan = np.random.choice(['weekly', 'monthly', 'annual'], p=[0.40, 0.25, 0.35])
+                    amounts = {'weekly': 4.99, 'monthly': 14.99, 'annual': 34.99}
+                else:
+                    # в группе A стандартные цены и распределение
+                    plan = np.random.choice(['weekly', 'monthly', 'annual'], p=[0.50, 0.35, 0.15])
+                    amounts = {'weekly': 4.99, 'monthly': 14.99, 'annual': 49.99}
+
                 status = np.random.choice(['completed', 'failed'], p=[0.95, 0.05])
                 
                 orders_list.append({
