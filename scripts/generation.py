@@ -39,8 +39,8 @@ DB_NAME = "product_analytics"
 
 DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
-np.random.seed(42)
-random.seed(42)
+np.random.seed(67)
+random.seed(67)
 
 print("Запуск генерации синтетических данных...")
 
